@@ -2,9 +2,9 @@ const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
 const { authMiddleware } = require('./utils/auth');
-const db = require('./config/connection');
 
 const { typeDefs, resolvers } = require('./schemas');
+const db = require('./config/connection');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -13,7 +13,6 @@ const server = new ApolloServer({
   resolvers,
   context: authMiddleware
 });
-
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -34,7 +33,7 @@ const startApolloServer = async () => {
   db.once('open', () => {
     app.listen(PORT, () => {
       console.log(`Book Search Engine's API server running on port ${PORT}!!`)
-      console.log(`Use GraphQL to use the mutations/queries at https://localhost:${PORT}${server.graphqlPath}`)
+      console.log(`Use GraphQL to use the mutations/queries at http://localhost:${PORT}${server.graphqlPath}`)
     })
   })
 }

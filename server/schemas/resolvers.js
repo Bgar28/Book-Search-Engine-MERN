@@ -5,7 +5,7 @@ const { AuthenticationError } = require('apollo-server-express');
 const resolvers = {
     Query: {
         // find a user
-        //context in the query allows thr logged in user to be retrieved without specifically searching for them
+        //context in the query allows the logged in user to be retrieved without specifically searching for them
         me: async (parent, args, context) => {
             if (context.user) {
                 const userData = await User.findOne({ _id: context.user._id });
