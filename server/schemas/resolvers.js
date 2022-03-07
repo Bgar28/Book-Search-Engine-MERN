@@ -45,7 +45,7 @@ const resolvers = {
             }
         },
 
-        // allow a signed user to remove a book from their profile
+        // allow a signed in user to remove a book from their profile
         removeBook: async (parent, args, context) => {
             if (context.user) {
                 const userBooks = await User.findOneAndUpdate(
