@@ -16,21 +16,26 @@ const resolvers = {
     },
 
     Mutation: {
-        // authuroize a user after they're authenticated
+        // authorize a user after they're authenticated
         login: async (parent, { email, password }) => {
             const user = await User.findOne({ email });
+            // console log the user's info and saved books
+            console.log(user)
 
             if (!user) {
                 throw new AuthenticationError('No user found! Please try again!');
             }
 
             const correctPw = await user.isCorrectPassword(password);
+            console.log(correctPw)
 
             if (!correctPw) {
                 throw new AuthenticationError('No user found! Please try again!');
             }
 
             const token = signToken(user);
+            // console log the user's token if authorized. Will get 'invalid token' msg if error
+            console.log(token)
             return { token, user };
         },
         // create a new user
@@ -46,14 +51,15 @@ const resolvers = {
         },
 
         // allow a signed in user to remove a book from their profile
-        removeBook: async (parent, args, context) => {
+        removeBook: async (parent, { bookId }, context) => {
             if (context.user) {
                 const userBooks = await User.findOneAndUpdate(
                     { _id: context.user._id },
-                    { $pull: { savedBooks: { bookId: args.bookId } } },
+                    { $pull: { savedBooks: { bookId } } },
                     { new: true }
                 );
-
+                // console log the user's array of saved books after one is removed
+                console.log(userBooks)
                 return userBooks;
             }
 
@@ -62,15 +68,19 @@ const resolvers = {
 
         // allow a signed in user to save a book to their profile
         saveBook: async (parent, { input }, context) => {
+            console.log(input)
+            console.log(context.user)
             if (context.user) {
                 const userBooks = await User.findOneAndUpdate(
                     { _id: context.user._id },
                     { $addToSet: { savedBooks: input } },
                     {
                         new: true,
-                        runValidators: true
+                        // runValidators: true
                     }
                 );
+                //console all the user's saved books after one is added
+                console.log(userBooks)
                 return userBooks;
             }
             throw new AuthenticationError("You need to be signed in!");
