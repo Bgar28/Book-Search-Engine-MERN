@@ -15,7 +15,7 @@
   ## Installation
     This application has been deployed to heroku at the following link:  https://apollos-book-search.herokuapp.com/ <br>
 
-    Clone this repository. Install the dependecies by running this command:
+Clone this repository. Install the dependecies by running this command:
     ```
     npm i
     ```
@@ -32,6 +32,9 @@
   ## Usage
 
   When the back-end is running, the user is able to utilize the mutations and query via GraphQL at http://localhost:3001/graphql. Here, the user is able to create a new account. Once authenticated, they  obtain a JSON web token so they're authorized to use the other mutations of saving a book and removing a book. The query is used to obtain all of the logged in user's information and saved books. Below are screenshots of the application. <br>
+  ![screenshot](https://github.com/Bgar28/Book-Search-Engine-MERN/blob/main/assets/book-seach.png) <br>
+  ![screenshot](https://github.com/Bgar28/Book-Search-Engine-MERN/blob/main/assets/saved-books.png) <br>
+  ![screenshot](https://github.com/Bgar28/Book-Search-Engine-MERN/blob/main/assets/atlas.png)
 
 
 
