@@ -13,7 +13,7 @@
   * [License](#license)
    
   ## Installation
-    This application has been deployed to heroku at the following link:  https://apollos-book-search.herokuapp.com/ <br>
+This application has been deployed to heroku at the following link:  https://apollos-book-search.herokuapp.com/ <br>
 
 Clone this repository. Install the dependecies by running this command:
     ```
